@@ -5,3 +5,11 @@
 4. Generálsz magadnak kulcsot ```php artisan key:generate```
 5. MySQL migrációt futtatsz. ```php artisan migrate```
 6. Elindítod a szervert. ```composer run dev```
+
+### Docker
+
+- Fejlesztői környezet indítása
+
+    ```sh
+    docker-compose -f docker-compose.dev.yml up
+    ```
