@@ -20,6 +20,20 @@ cd /var/www/html
 if [ ! -f .env ]; then
     echo "creating .env"
     cp .env.example .env
+
+    # check for .env.docker and update the env vars
+    if [ -f .env.docker ]; then
+        echo "apply env vars from .env.docker"
+        while IFS='=' read -r key value || [ -n "$key" ]; do
+            if [[ ! $key =~ ^# && -n $key && -n $value ]]; then
+                env_value="${!key}"
+                if [ -z "$env_value" ]; then
+                    sed -i "s|^$key=.*|$key=$value|" .env 2>/dev/null || echo "$key=$value" >> .env
+                fi
+            fi
+        done < .env.docker
+    fi
+    
     
     # update database connection details if set as env vars
     if [ -n "$DB_HOST" ]; then
