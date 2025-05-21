@@ -6,10 +6,11 @@
 5. MySQL migrációt futtatsz. ```php artisan migrate```
 6. Elindítod a szervert. ```composer run dev```
 
-### Docker
+### Docker használata
+1. Opcionálisan átnevezed az ```.env.docker.example``` fájlt ```.env.docker```-re.
+2. Fejlesztői környezet indítása: ```docker-compose -f docker-compose.dev.yml up --build```
+3. Prod környezet indítása: ```docker-compose up --build```
 
-- Fejlesztői környezet indítása
-
-    ```sh
-    docker-compose -f docker-compose.dev.yml up
-    ```
+A Docker változókat így állíthatod be:
+- terminalban: ```APP_PORT=9000 docker-compose -f docker-compose.dev.yml up```
+- ```.env.docker``` fájlban
